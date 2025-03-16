@@ -2,17 +2,36 @@ package net.sergio.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name="Vacantes")
 public class Vacante {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nombre;
 	private String descripcion;
 	private Date fecha;
-	private double salario;
+	private Double salario;
 	private Integer destacado;
-	private String imagen="no-image.jpg";
+	private String imagen="no-image.png";
 	private String estatus;
 	private String detalles;
+	
+	//@Transient
+	
+	@OneToOne
+	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
 	
 	public Integer getId() {
@@ -39,13 +58,12 @@ public class Vacante {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public double getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
-	
 	public Integer getDestacado() {
 		return destacado;
 	}
@@ -76,7 +94,7 @@ public class Vacante {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha

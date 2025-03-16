@@ -1,6 +1,6 @@
 package net.sergio.controller;
 
-import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class CategoriasController {
 	// @GetMapping("/index")
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String mostrarIndex(Model model) {
-		LinkedList<Categoria> categorias = categoriasService.buscarTodas();
+		List<Categoria> categorias = categoriasService.buscarTodas();
 		model.addAttribute("categorias", categorias);
 		
 		return "categorias/listCategorias";
