@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>EmpleosApp | Listado de Ofertas de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+  
+    <header th:insert="fragments/menu :: menu-principal"></header>  
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
+          <div class="card-body">
+            <a class="btn btn-primary" th:href="@{/vacantes/create}" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i>Nueva</a>            
+            <hr>
+			<div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>            
+			<table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Nombre</th>                  
+                  <th scope="col">Fecha Public.</th>
+                  <th scope="col">Estatus</th>
+                  <th scope="col">Destacada</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="vacante : ${vacantes}">
+                  <td></td>
+                  <td th:text="${vacante.nombre}"></td>                  
+                  <td th:text="${vacante.fecha}"></td>
+                  <td th:text="${vacante.estatus}"></td>
+                  <td th:text="${vacante.destacado==1 ? 'SI' : 'NO' }"></td>
+                </tr>                                              
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>   
+  </body>
+</html>
