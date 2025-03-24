@@ -46,4 +46,9 @@ public class VacantesServiceJPA implements IVacantesService {
         return vacantesRepo.findByDestacadoAndEstatusOrderByIdDesc(1, "Aprobada");
     }
 
+    @Override
+    public void eliminar(Integer id) {
+        vacantesRepo.deleteById(id);
+    }
+
 }
