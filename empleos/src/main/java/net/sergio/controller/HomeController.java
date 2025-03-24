@@ -7,17 +7,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import net.sergio.model.Usuario;
 import net.sergio.model.Vacante;
 import net.sergio.service.IVacantesService;
+import net.sergio.service.DB.UsuarioServiceJPA;
 
 @Controller
 public class HomeController {
 
     @Autowired
     private IVacantesService serviceVacantes;
+
+    @Autowired
+    private UsuarioServiceJPA userService;
 
     @GetMapping("/tabla")
     public String mostrarTabla(Model model) {
@@ -62,8 +71,44 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/usuarios/index")
+    public String mostrarUsuarios(Model model) {
+
+        List<Usuario> usuarios = userService.buscarTodos();
+
+        model.addAttribute("usuarios", usuarios);
+        return "usuarios/listUsuarios";
+    }
+
+    @GetMapping("/signup")
+    public String registrarse(Usuario usuario) {
+        return "formRegistro";
+
+    }
+
+    @PostMapping("/signup")
+    public String guardarRegistro(Usuario usuario, BindingResult result, RedirectAttributes attributes) {
+
+        if (result.hasErrors()) {
+            for (ObjectError error : result.getAllErrors()) {
+                System.out.println("Ocurrió un error: " + error.getDefaultMessage());
+            }
+
+            return "formRegistro";
+        }
+
+        userService.guardar(usuario);
+        attributes.addFlashAttribute("msg", "Usuario guardado");
+
+        System.out.println("Usuario: " + usuario);
+
+        return "redirect:/usuarios/index";
+
+    }
+
     @ModelAttribute
     public void setGenericos(Model model) {
         model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
     }
+
 }

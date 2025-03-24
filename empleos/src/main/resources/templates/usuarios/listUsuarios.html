@@ -41,10 +41,10 @@
               </thead>
               <tbody>
                 <tr th:each="usuario : ${usuarios}">
-                  <td th:text="${usuario.nombre}">Iván Eliseo Tinajero Díaz</td>
-                  <td th:text="${usuario.username}">itinajero</td>                  
-                  <td th:text="${usuario.email}">ivanetinajero@gmail.com</td>
-                  <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
+                  <td th:text="${usuario.nombre}"></td>
+                  <td th:text="${usuario.username}"></td>                  
+                  <td th:text="${usuario.email}"></td>
+                  <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }"></td>
                   
                   <td>
                     <a th:href="@{/usuarios/delete/{id} (id=${usuario.id}) }" class="btn btn-success btn-sm confirmar" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
