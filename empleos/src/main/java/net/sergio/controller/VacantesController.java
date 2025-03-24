@@ -13,6 +13,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +47,6 @@ public class VacantesController {
     @GetMapping("/create")
     public String crear(Vacante vacante, Model model) {
 
-        model.addAttribute("categorias", serviceCategorias.buscarTodas());
-
         return "vacantes/formVacante";
     }
 
@@ -67,8 +66,7 @@ public class VacantesController {
             String ruta = "/empleos/img-vacantes/"; // Linux/MAC
             String nombreImagen = Utils.guardarArchivo(multiPart, ruta);
 
-            if (nombreImagen != null) { // La imagen si se subió
-                // Procesamos la variable nombreImagen
+            if (nombreImagen != null) {
                 vacante.setImagen(nombreImagen);
             }
         }
@@ -80,24 +78,6 @@ public class VacantesController {
         return "redirect:/vacantes/index";
     }
 
-    /*
-     * @PostMapping("/save") public String guardar(@RequestParam("nombre") String
-     * nombre, @RequestParam("descripcion") String
-     * descripcion, @RequestParam("estatus") String estatus,
-     * 
-     * @RequestParam("fecha") String fecha, @RequestParam("destacado") int
-     * destacado, @RequestParam("salario") double salario, @RequestParam("detalles")
-     * String detalles) {
-     * 
-     * System.out.println("Nombre: " + nombre); System.out.println("Descripción: " +
-     * descripcion); System.out.println("Estatus: " + estatus);
-     * System.out.println("Fecha: " + fecha); System.out.println("Destacado: " +
-     * destacado); System.out.println("Salario: " + salario);
-     * System.out.println("Detalles: " + detalles);
-     * 
-     * return "vacantes/listVacantes"; }
-     */
-
     @GetMapping("/delete/{id}")
     public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes) {
 
@@ -107,6 +87,16 @@ public class VacantesController {
         attributes.addFlashAttribute("msg", "La vacante " + idVacante + " fue eliminada");
 
         return "redirect:/vacantes/index";
+
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editar(@PathVariable("id") int idVacante, Model model) {
+
+        Vacante vacante = serviceVacantes.buscarPorId(idVacante);
+        model.addAttribute("vacante", vacante);
+
+        return "vacantes/formVacante";
 
     }
 
@@ -121,6 +111,12 @@ public class VacantesController {
         // Buscar los detalles de la vacante en la BBDD...
 
         return "detalle";
+    }
+
+    @ModelAttribute
+    public void setGenericos(Model model) {
+        model.addAttribute("categorias", serviceCategorias.buscarTodas());
+
     }
 
     @InitBinder
