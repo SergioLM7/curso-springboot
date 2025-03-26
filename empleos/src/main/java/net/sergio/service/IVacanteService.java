@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sergio.model.Vacante;
 
-public interface IVacantesService {
+public interface IVacanteService {
 
     List<Vacante> buscarTodas();
 

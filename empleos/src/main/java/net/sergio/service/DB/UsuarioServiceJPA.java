@@ -31,8 +31,7 @@ public class UsuarioServiceJPA implements IUsuarioService {
 
     @Override
     public void eliminar(Integer idUsuario) {
-        // TODO Auto-generated method stub
-
+        userRepo.deleteById(idUsuario);
     }
 
     @Override

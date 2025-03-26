@@ -16,14 +16,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sergio.model.Usuario;
 import net.sergio.model.Vacante;
-import net.sergio.service.IVacantesService;
+import net.sergio.service.IVacanteService;
 import net.sergio.service.DB.UsuarioServiceJPA;
 
 @Controller
 public class HomeController {
 
     @Autowired
-    private IVacantesService serviceVacantes;
+    private IVacanteService serviceVacantes;
 
     @Autowired
     private UsuarioServiceJPA userService;
@@ -69,15 +69,6 @@ public class HomeController {
     @GetMapping("/")
     public String mostrarHome(Model model) {
         return "home";
-    }
-
-    @GetMapping("/usuarios/index")
-    public String mostrarUsuarios(Model model) {
-
-        List<Usuario> usuarios = userService.buscarTodos();
-
-        model.addAttribute("usuarios", usuarios);
-        return "usuarios/listUsuarios";
     }
 
     @GetMapping("/signup")

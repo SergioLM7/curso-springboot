@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sergio.model.Categoria;
-import net.sergio.service.ICategoriasService;
+import net.sergio.service.ICategoriaService;
 
 @Controller
 @RequestMapping(value = "/categorias")
 public class CategoriasController {
 
     @Autowired
-    public ICategoriasService categoriasService;
+    public ICategoriaService categoriasService;
 
     @GetMapping("/index")
     public String mostrarIndex(Model model) {

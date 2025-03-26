@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import net.sergio.model.Categoria;
 
 @Service
-public class CategoriaServiceImpl implements ICategoriasService {
+public class CategoriaServiceImpl implements ICategoriaService {
 
     private LinkedList<Categoria> lista = null;
 

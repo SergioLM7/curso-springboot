@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import net.sergio.model.Vacante;
 import net.sergio.repository.VacanteRepository;
-import net.sergio.service.IVacantesService;
+import net.sergio.service.IVacanteService;
 
 @Service
 @Primary
-public class VacantesServiceJPA implements IVacantesService {
+public class VacanteServiceJPA implements IVacanteService {
 
     @Autowired
     private VacanteRepository vacantesRepo;

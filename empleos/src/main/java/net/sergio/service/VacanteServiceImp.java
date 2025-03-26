@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import net.sergio.model.Vacante;
 
 @Service
-public class VacantesServiceImp implements IVacantesService {
+public class VacanteServiceImp implements IVacanteService {
 
     private List<Vacante> lista = null;
 
-    public VacantesServiceImp() {
+    public VacanteServiceImp() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         lista = new LinkedList<Vacante>();
 

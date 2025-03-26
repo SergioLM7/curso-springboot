@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sergio.model.Categoria;
 
-public interface ICategoriasService {
+public interface ICategoriaService {
     void guardar(Categoria categoria);
 
     List<Categoria> buscarTodas();

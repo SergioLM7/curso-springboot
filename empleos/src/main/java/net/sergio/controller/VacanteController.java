@@ -22,19 +22,19 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.sergio.model.Vacante;
-import net.sergio.service.ICategoriasService;
-import net.sergio.service.IVacantesService;
+import net.sergio.service.ICategoriaService;
+import net.sergio.service.IVacanteService;
 import net.sergio.utils.Utils;
 
 @Controller
 @RequestMapping("/vacantes")
-public class VacantesController {
+public class VacanteController {
 
     @Autowired
-    private IVacantesService serviceVacantes;
+    private IVacanteService serviceVacantes;
 
     @Autowired
-    private ICategoriasService serviceCategorias;
+    private ICategoriaService serviceCategorias;
 
     @GetMapping("/index")
     public String mostrarIndex(Model model) {

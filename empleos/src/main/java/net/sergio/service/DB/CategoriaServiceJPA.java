@@ -13,11 +13,11 @@ import net.sergio.model.Categoria;
 import net.sergio.model.Vacante;
 import net.sergio.repository.CategoriaRepository;
 import net.sergio.repository.VacanteRepository;
-import net.sergio.service.ICategoriasService;
+import net.sergio.service.ICategoriaService;
 
 @Service
 @Primary
-public class CategoriasServiceJPA implements ICategoriasService {
+public class CategoriaServiceJPA implements ICategoriaService {
 
     @Autowired
     private CategoriaRepository categoriaRepo;
