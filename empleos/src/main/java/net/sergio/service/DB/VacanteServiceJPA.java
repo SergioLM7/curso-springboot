@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import net.sergio.model.Vacante;
@@ -49,6 +50,11 @@ public class VacanteServiceJPA implements IVacanteService {
     @Override
     public void eliminar(Integer id) {
         vacantesRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Vacante> searchByExample(Example<Vacante> example) {
+        return vacantesRepo.findAll(example);
     }
 
 }

@@ -111,6 +111,10 @@ public class Vacante {
         this.categoria = categoria;
     }
 
+    public void reset() {
+        this.imagen = null;
+    }
+
     @Override
     public String toString() {
         return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
